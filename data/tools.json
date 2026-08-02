@@ -1,0 +1,10 @@
+{
+    "tools": [
+        {
+            "id": "first-tool",
+            "title": "Генератор конфигов",
+            "description": "Описание",
+            "status": "ready"
+        }
+    ]
+}
