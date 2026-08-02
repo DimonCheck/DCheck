@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCheck — Цифровой профиль</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="header">
+        <div class="logo">D<span>Check</span></div>
+        <div class="header-controls">
+            <button id="theme-toggle" aria-label="Переключить тему">🌙</button>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub">🐙</a>
+                <a href="#" aria-label="Telegram">✈️</a>
+                <a href="#" aria-label="ВКонтакте">📘</a>
+                <a href="#" aria-label="Email">📧</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕЙНЕР ===== -->
+    <div class="container">
+
+        <!-- ===== МЕНЮ (СПРАВА) ===== -->
+        <nav class="menu" id="menu">
+            <button class="menu-btn active" data-page="home">🏠 Главная</button>
+            <button class="menu-btn" data-page="tools">🛠️ Инструменты</button>
+            <button class="menu-btn" data-page="blog">📝 Блог</button>
+            <button class="menu-btn" data-page="about">👤 Об авторе</button>
+            <button class="menu-btn" data-page="contacts">📬 Контакты</button>
+        </nav>
+
+        <!-- ===== ОСНОВНОЕ СОДЕРЖИМОЕ ===== -->
+        <main class="content" id="content">
+            <!-- Контент подставляется через JavaScript -->
+        </main>
+
+    </div>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer">
+        <p>© 2026 DCheck. Все права защищены.</p>
+    </footer>
+
+    <script src="js/modules/accordion.js"></script>
+    <script src="js/modules/theme.js"></script>
+    <script src="js/modules/search.js"></script>
+    <script src="js/modules/pageLoader.js"></script>
+    <script src="js/modules/tools.js"></script>
+    <script src="js/modules/blog.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
