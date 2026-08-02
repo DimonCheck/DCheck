@@ -1,22 +1,12 @@
-{
-    "projects": [
-        {
-            "id": "kodedc",
-            "title": "🚀 KodeDC",
-            "description": "Образовательная платформа с инструкциями по Linux и сетям.",
-            "url": "https://dimoncheck.github.io/kodedc/"
-        },
-        {
-            "id": "site",
-            "title": "💻 Сайт-визитка",
-            "description": "Этот сайт — пример моего подхода к дизайну и вёрстке.",
-            "url": "#"
-        },
-        {
-            "id": "labworks",
-            "title": "📡 Лабораторные работы",
-            "description": "Сборник учебных материалов по Linux и администрированию.",
-            "url": "#"
-        }
-    ]
-}
+"projects": [
+    {
+        "title": "🚀 KodeDC",
+        "description": "Образовательная платформа...",
+        "url": "https://dimoncheck.github.io/kodedc/"
+    },
+    {
+        "title": "💻 Новый проект",
+        "description": "Описание нового проекта.",
+        "url": "#"
+    }
+]
