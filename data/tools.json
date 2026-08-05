@@ -1,10 +1,11 @@
 {
     "tools": [
         {
-            "id": "first-tool",
-            "title": "Генератор конфигов",
-            "description": "Описание",
-            "status": "ready"
+            "id": "password-generator",
+            "title": "🔐 Генератор паролей (8 символов)",
+            "description": "Введите часть пароля — остальное сгенерирует программа.",
+            "status": "ready",
+            "url": "tools/generator-password.html"
         }
     ]
 }
