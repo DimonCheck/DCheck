@@ -113,6 +113,16 @@
             font-size: 0.9rem;
             margin-top: 0.3rem;
         }
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -120,11 +130,11 @@
         <a href="../index.html" class="back-link">← На главную</a>
 
         <div class="tool-container">
-            <h2>🔐 Генератор паролей</h2>
+            <h2>🔐 Генератор паролей <span class="badge">12 символов</span></h2>
             <p class="subtitle">Введите часть пароля — остальное сгенерирует программа.</p>
 
             <label for="userInput">Ваша часть пароля:</label>
-            <input type="text" id="userInput" placeholder="Например: myPass" maxlength="8">
+            <input type="text" id="userInput" placeholder="Например: myPass" maxlength="12">
             <div id="inputError" class="error-text"></div>
 
             <button class="btn-generate" onclick="generatePassword()">🎲 Сгенерировать</button>
@@ -135,67 +145,52 @@
             </div>
 
             <div class="info-box">
-                ⚡ Пароль всегда состоит из <strong>8 символов</strong>.
-                Если вы ввели больше — первые 8 символов будут использованы.
+                ⚡ Пароль всегда состоит из <strong>12 символов</strong>.
+                Если вы ввели больше — первые 12 символов будут использованы.
             </div>
         </div>
     </div>
 
     <script>
-        // ===== ГЕНЕРАТОР ПАРОЛЕЙ =====
-        // Точная копия логики из вашего C# кода
+        // ===== ГЕНЕРАТОР ПАРОЛЕЙ (12 СИМВОЛОВ) =====
+        const totalLength = 12;
+        const digits = "0123456789";
+        const letters = "ABCDIFGabcdifghyjklmnopqwsxzv";
 
         function generatePassword() {
-            const totalLength = 12;
-            const digits = "0123456789";
-            const letters = "ABCDIFGabcdifghyjklmnopqwsxzv";
-
-            // 1. Получаем ввод пользователя
             let input = document.getElementById('userInput').value;
             const errorEl = document.getElementById('inputError');
             let userPart = '';
 
-            // 2. Обрезаем до 8 символов (как в C#)
-            if (input.length > 12) {
-                userPart = input.substring(0, 12);
-                errorEl.textContent = '⚠️ Введено больше 8 символов. Использованы первые 8.';
+            if (input.length > totalLength) {
+                userPart = input.substring(0, totalLength);
+                errorEl.textContent = `⚠️ Введено больше ${totalLength} символов. Использованы первые ${totalLength}.`;
             } else {
                 userPart = input;
                 errorEl.textContent = '';
             }
 
-            // 3. Сколько символов нужно сгенерировать
             let charsToGenerate = totalLength - userPart.length;
-
-            // 4. Генерируем символы (точно как в C#)
-            const rnd = {
-                next: (min, max) => Math.floor(Math.random() * (max - min)) + min
-            };
             let generatedPart = '';
 
             for (let i = 0; i < charsToGenerate; i++) {
-                let choice = rnd.next(0, 2);
+                let choice = Math.floor(Math.random() * 2);
                 if (choice === 0) {
-                    let randomDigit = digits[rnd.next(0, digits.length)];
-                    generatedPart += randomDigit;
+                    generatedPart += digits[Math.floor(Math.random() * digits.length)];
                 } else {
-                    let randomLetter = letters[rnd.next(0, letters.length)];
-                    generatedPart += randomLetter;
+                    generatedPart += letters[Math.floor(Math.random() * letters.length)];
                 }
             }
 
-            // 5. Собираем финальный пароль
             const finalPassword = userPart + generatedPart;
             const passwordDisplay = document.getElementById('passwordDisplay');
             const copyBtn = document.getElementById('copyBtn');
 
-            // 6. Отображаем результат
             passwordDisplay.textContent = finalPassword;
             passwordDisplay.className = '';
             copyBtn.style.display = 'inline-block';
         }
 
-        // ===== КОПИРОВАНИЕ =====
         function copyPassword() {
             const text = document.getElementById('passwordDisplay').textContent;
             if (text && text !== 'Нажмите «Сгенерировать»') {
@@ -212,10 +207,8 @@
             }
         }
 
-        // ===== ГЕНЕРАЦИЯ ПРИ ЗАГРУЗКЕ (если поле пустое) =====
         window.onload = function() {
-            // Если хотите, чтобы при загрузке сразу генерировался пароль — раскомментируйте:
-            // generatePassword();
+            generatePassword();
         };
     </script>
 </body>
