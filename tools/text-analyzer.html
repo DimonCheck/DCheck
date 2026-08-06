@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализатор текста — DCheck</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-content);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+        .tool-container h2 {
+            margin-bottom: 0.5rem;
+        }
+        .tool-container .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        .tool-container label {
+            display: block;
+            margin: 0.8rem 0 0.3rem 0;
+            font-weight: 500;
+        }
+        .tool-container textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+        }
+        .tool-container textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .btn-analyze {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.2rem;
+            transition: background 0.2s;
+        }
+        .btn-analyze:hover {
+            background: #1f5e4c;
+        }
+        .result-table {
+            margin-top: 1.5rem;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .result-table td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .result-table .label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .result-table .value {
+            text-align: right;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+        .result-table tr:hover {
+            background: var(--bg-body);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .info-box {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            background: rgba(43, 122, 98, 0.06);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-left: 3px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 800px; margin: 2rem auto; padding: 0 1rem;">
+        <a href="../index.html" class="back-link">← На главную</a>
+
+        <div class="tool-container">
+            <h2>📊 Анализатор текста</h2>
+            <p class="subtitle">Вставьте текст — получите подробную статистику.</p>
+
+            <label for="textInput">Ваш текст:</label>
+            <textarea id="textInput" placeholder="Введите текст для анализа... Например: Привет, мир! Как дела?"></textarea>
+
+            <button class="btn-analyze" onclick="analyzeText()">🔍 Анализировать</button>
+
+            <div id="resultContainer">
+                <table class="result-table" id="resultTable" style="display: none;">
+                    <tr><td class="label">Всего символов</td><td class="value" id="totalChars">0</td></tr>
+                    <tr><td class="label">Без пробелов</td><td class="value" id="charsWithoutSpaces">0</td></tr>
+                    <tr><td class="label">Слов</td><td class="value" id="wordCount">0</td></tr>
+                    <tr><td class="label">Предложений</td><td class="value" id="sentenceCount">0</td></tr>
+                    <tr><td class="label">Гласных</td><td class="value" id="vowelCount">0</td></tr>
+                    <tr><td class="label">Согласных</td><td class="value" id="consonantCount">0</td></tr>
+                    <tr><td class="label">Букв всего</td><td class="value" id="letterCount">0</td></tr>
+                    <tr><td class="label">Цифр</td><td class="value" id="digitCount">0</td></tr>
+                    <tr><td class="label">Знаков препинания</td><td class="value" id="punctuationCount">0</td></tr>
+                </table>
+            </div>
+
+            <div class="info-box">
+                💡 Поддерживаются русские и английские буквы, цифры и знаки препинания.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== АНАЛИЗАТОР ТЕКСТА =====
+        // Полная копия логики из вашего C# кода
+
+        function analyzeText() {
+            const text = document.getElementById('textInput').value;
+
+            // Объявление переменных
+            let totalChars = text.length;
+            let charsWithoutSpaces = 0;
+            let wordCount = 0;
+            let sentenceCount = 0;
+            let vowelCount = 0;
+            let consonantCount = 0;
+            let digitCount = 0;
+            let punctuationCount = 0;
+            let letterCount = 0;
+
+            const vowels = "aeiouyAEIOUYаеёиоуыэюяАЕЁИОУЫЭЮЯ";
+            const consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZбвгджзйклмнпрстфхцчшщБВГДЖЗЙКЛМНПРСТФХЦЧШЩ";
+            const punctuation = ".,!?;:()\"'-";
+
+            // Один цикл для подсчета всего
+            for (let i = 0; i < totalChars; i++) {
+                let c = text[i];
+
+                // Подсчет символов без пробелов
+                if (c !== ' ') {
+                    charsWithoutSpaces++;
+                }
+
+                // Подсчет цифр
+                if (c >= '0' && c <= '9') {
+                    digitCount++;
+                }
+
+                // Подсчет букв
+                if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' ||
+                    c >= 'А' && c <= 'Я' || c >= 'а' && c <= 'я' ||
+                    c === 'Ё' || c === 'ё') {
+                    letterCount++;
+                }
+
+                // Подсчет знаков препинания
+                if (punctuation.includes(c)) {
+                    punctuationCount++;
+                }
+
+                // Подсчет предложений
+                if (c === '.' || c === '!' || c === '?') {
+                    sentenceCount++;
+                }
+
+                // Подсчет гласных и согласных (только если это буква)
+                if (letterCount > 0) {
+                    if (vowels.includes(c)) {
+                        vowelCount++;
+                    } else if (consonants.includes(c)) {
+                        consonantCount++;
+                    }
+                }
+            }
+
+            // Подсчет слов (разбиваем по пробелам)
+            const words = text.split(' ').filter(w => w.length > 0);
+            wordCount = words.length;
+
+            // Вывод результатов в таблицу
+            document.getElementById('totalChars').textContent = totalChars;
+            document.getElementById('charsWithoutSpaces').textContent = charsWithoutSpaces;
+            document.getElementById('wordCount').textContent = wordCount;
+            document.getElementById('sentenceCount').textContent = sentenceCount;
+            document.getElementById('vowelCount').textContent = vowelCount;
+            document.getElementById('consonantCount').textContent = consonantCount;
+            document.getElementById('letterCount').textContent = letterCount;
+            document.getElementById('digitCount').textContent = digitCount;
+            document.getElementById('punctuationCount').textContent = punctuationCount;
+
+            document.getElementById('resultTable').style.display = 'table';
+        }
+
+        // Анализ при загрузке (если есть текст по умолчанию)
+        window.onload = function() {
+            // Можно добавить текст-пример
+            // document.getElementById('textInput').value = 'Привет, мир! Как дела? 123';
+            // analyzeText();
+        };
+    </script>
+</body>
+</html>
