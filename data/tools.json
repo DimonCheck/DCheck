@@ -1,18 +1,25 @@
 {
     "tools": [
         {
-            "id": "password-generator",
+            "id": "password-generator-8",
             "title": "🔐 Генератор паролей (8 символов)",
-            "description": "Введите часть пароля — остальное сгенерирует программа.",
+            "description": "Классический генератор паролей длиной 8 символов.",
             "status": "ready",
             "url": "tools/generator-password.html"
-        }
+        },
         {
             "id": "password-generator-12",
             "title": "🔐 Генератор паролей (12 символов)",
-            "description": "Введите часть пароля — остальное сгенерирует программа.",
+            "description": "Улучшенный генератор с длиной пароля 12 символов.",
             "status": "ready",
             "url": "tools/generator-12.html"
+        },
+        {
+            "id": "text-analyzer",
+            "title": "📊 Анализатор текста",
+            "description": "Подробная статистика по вашему тексту: символы, слова, гласные, согласные и многое другое.",
+            "status": "ready",
+            "url": "tools/text-analyzer.html"
         }
     ]
 }
