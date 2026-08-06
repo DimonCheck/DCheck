@@ -7,5 +7,12 @@
             "status": "ready",
             "url": "tools/generator-password.html"
         }
+        {
+            "id": "password-generator-12",
+            "title": "🔐 Генератор паролей (12 символов)",
+            "description": "Улучшенный генератор с длиной пароля 12 символов.",
+            "status": "ready",
+            "url": "tools/generator-12.html"
+        }
     ]
 }
