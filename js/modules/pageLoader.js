@@ -18,12 +18,9 @@
 
                 let html = `<h2>${pageData.title}</h2>`;
 
-                // ========== СТРАНИЦА "ОБ АВТОРЕ" (с аккордеоном и проектами) ==========
                 if (pageId === 'about') {
-                    // Основной контент
                     html += `<div class="about-content">${pageData.content || ''}</div>`;
 
-                    // Образование (аккордеон)
                     if (pageData.education && pageData.education.length) {
                         html += pageData.education.map((item, index) => `
                             <div class="accordion-item">
@@ -38,7 +35,6 @@
                         `).join('');
                     }
 
-                    // Проекты (карточки)
                     if (pageData.projects && pageData.projects.length) {
                         html += `<div class="project-grid">`;
                         html += pageData.projects.map(project => `
@@ -51,17 +47,13 @@
                         html += `</div>`;
                     }
                 } else {
-                    // ========== ВСЕ ОСТАЛЬНЫЕ СТРАНИЦЫ ==========
                     html += pageData.content || '';
                 }
 
                 container.innerHTML = html;
 
-                // Переинициализация аккордеона (если есть)
-                document.querySelectorAll('.accordion-header').forEach(header => {
-                    header.removeEventListener('click', accordionHandler);
-                    header.addEventListener('click', accordionHandler);
-                });
+                // Вручную инициализируем аккордеон после вставки HTML
+                initAccordionManually();
 
                 document.dispatchEvent(new Event('contentLoaded'));
             })
@@ -71,13 +63,22 @@
             });
     }
 
-    // Обработчик аккордеона
+    // Отдельная функция для аккордеона
+    function initAccordionManually() {
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            // Убираем старые обработчики, чтобы не дублировались
+            header.removeEventListener('click', accordionHandler);
+            header.addEventListener('click', accordionHandler);
+        });
+    }
+
     function accordionHandler(e) {
         const header = e.currentTarget;
         const targetId = header.dataset.target;
         const body = document.getElementById(targetId);
         if (!body) return;
 
+        // Закрываем все остальные блоки
         document.querySelectorAll('.accordion-body').forEach(b => {
             if (b !== body) {
                 b.classList.remove('open');
