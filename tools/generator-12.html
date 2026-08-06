@@ -152,7 +152,6 @@
     </div>
 
     <script>
-        // ===== ГЕНЕРАТОР ПАРОЛЕЙ (12 СИМВОЛОВ) =====
         const totalLength = 12;
         const digits = "0123456789";
         const letters = "ABCDIFGabcdifghyjklmnopqwsxzv";
@@ -202,14 +201,12 @@
                         btn.textContent = originalText;
                     }, 1500);
                 }).catch(() => {
-                    alert('Не удалось скопировать. Скопируйте вручную.');
+                    alert('Не удалось скопировать.');
                 });
             }
         }
 
-        window.onload = function() {
-            generatePassword();
-        };
+        window.onload = generatePassword;
     </script>
 </body>
 </html>
