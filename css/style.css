@@ -412,6 +412,125 @@ body.dark {
     margin-left: auto;
     white-space: nowrap;
 }
+/* ===== БЛОКИ СТАТЕЙ НА ГЛАВНОЙ ===== */
+.posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.post-card {
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.post-card:hover {
+    transform: translateX(6px);
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px rgba(43, 122, 98, 0.06);
+}
+
+.post-card .post-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+}
+.post-card .post-title-link {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+.post-card .post-title-link:hover {
+    color: var(--accent);
+}
+.post-card .post-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.post-card .post-tag {
+    font-size: 0.7rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.15rem 0.8rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* Для мобильных */
+@media (max-width: 600px) {
+    .post-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .post-card .post-tag {
+        align-self: flex-start;
+    }
+}
+/* ===== ПРИВЕТСТВЕННЫЙ БЛОК НА ГЛАВНОЙ ===== */
+.hero {
+    padding: 1.5rem 0 0.5rem 0;
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.stats-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    padding: 1rem 0 0.5rem 0;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--bg-body);
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    border: 1px solid var(--border);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+.stat-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(43, 122, 98, 0.06);
+}
+
+.stat-item .num {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+.stat-item .label {
+    color: var(--text-muted);
+}
 /* ===== АДАПТИВ ===== */
 @media (max-width: 700px) {
     .menu {
