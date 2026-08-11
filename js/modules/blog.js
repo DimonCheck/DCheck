@@ -27,7 +27,7 @@
             <div class="post-item" data-id="${post.id}">
                 <h3 class="post-title">${post.title}</h3>
                 <div class="post-meta">📅 ${post.date} · ⏱️ ${post.readingTime || '?'} мин · 🏷️ ${post.tags ? post.tags.join(', ') : ''}</div>
-                <p class="post-preview">${post.preview}</p>
+                <p class="post-preview">${post.preview || ''}</p>
                 <button class="read-more-btn" data-id="${post.id}">Читать далее →</button>
             </div>
         `).join('');
@@ -73,27 +73,24 @@
         const content = document.getElementById('content');
         if (!content) return;
 
-        // Загружаем HTML-шаблон страницы блога
-        fetch('pages/blog.html')
-            .then(res => res.text())
-            .then(html => {
-                content.innerHTML = html;
-                return loadPosts();
-            })
-            .then(posts => {
-                renderPostList(posts);
-            })
-            .catch(err => {
-                console.error('Ошибка загрузки страницы блога:', err);
-                content.innerHTML = '<h2>📝 Блог</h2><p>Не удалось загрузить страницу блога.</p>';
-            });
+        // Генерируем HTML напрямую (без внешнего файла)
+        content.innerHTML = `
+            <h2>📝 Блог</h2>
+            <p>Мои заметки, статьи и мысли о разработке.</p>
+            <div id="posts-list">
+                <p style="color: var(--text-muted);">Загрузка статей...</p>
+            </div>
+        `;
+
+        loadPosts().then(posts => {
+            renderPostList(posts);
+        });
     }
 
     function initBlog() {
         const content = document.getElementById('content');
         if (!content) return;
 
-        // Проверяем, есть ли уже список постов на странице
         if (document.getElementById('posts-list')) {
             loadPosts().then(posts => renderPostList(posts));
         }
