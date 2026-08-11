@@ -14,34 +14,25 @@
     <header class="header">
         <div class="logo">D<span>Check</span></div>
         <div class="header-controls">
-            <button id="theme-toggle" aria-label="Переключить тему">🌙</button>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub">🐙</a>
-                <a href="#" aria-label="Telegram">✈️</a>
-                <a href="#" aria-label="ВКонтакте">📘</a>
-                <a href="#" aria-label="Email">📧</a>
-            </div>
+            <button id="theme-toggle" class="theme-btn" aria-label="Переключить тему">🌙</button>
         </div>
     </header>
 
-    <!-- ===== ОСНОВНОЙ КОНТЕЙНЕР ==== -->
-    <div class="container">
+    <!-- ===== МЕНЮ (ГОРИЗОНТАЛЬНОЕ) ===== -->
+    <nav class="menu" id="menu">
+        <button class="menu-btn active" data-page="home">🏠 Главная</button>
+        <button class="menu-btn" data-page="tools">🛠️ Инструменты</button>
+        <button class="menu-btn" data-page="blog">📝 Блог</button>
+        <button class="menu-btn" data-page="about">👤 Об авторе</button>
+        <button class="menu-btn" data-page="contacts">📬 Контакты</button>
+    </nav>
 
-        <!-- ===== МЕНЮ (СПРАВА) ===== -->
-        <nav class="menu" id="menu">
-            <button class="menu-btn active" data-page="home">🏠 Главная</button>
-            <button class="menu-btn" data-page="tools">🛠️ Инструменты</button>
-            <button class="menu-btn" data-page="blog">📝 Блог</button>
-            <button class="menu-btn" data-page="about">👤 Об авторе</button>
-            <button class="menu-btn" data-page="contacts">📬 Контакты</button>
-        </nav>
-
-        <!-- ===== ОСНОВНОЕ СОДЕРЖИМОЕ ===== -->
-        <main class="content" id="content">
+    <!-- ===== ОСНОВНОЙ КОНТЕЙНЕР (РАСШИРЕННЫЙ) ===== -->
+    <main class="container">
+        <div class="content" id="content">
             <!-- Контент подставляется через JavaScript -->
-        </main>
-
-    </div>
+        </div>
+    </main>
 
     <!-- ===== ФУТЕР ===== -->
     <footer class="footer">
@@ -58,5 +49,4 @@
 
 </body>
 
-    
 </html>
