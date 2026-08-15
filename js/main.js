@@ -77,13 +77,13 @@ function loadRecentPosts() {
             if (container) {
                 if (latestPosts.length) {
                     container.innerHTML = `
-                        <h3 style="margin-top: 2rem; margin-bottom: 0.8rem;">📝 Последние статьи</h3>
+                        <h3 style="margin-top: 2rem; margin-bottom: 0.8rem;"> Последние статьи</h3>
                         <div class="posts-grid">
                             ${latestPosts.map(post => `
                                 <div class="post-card" onclick="window.BlogModule.openPost('${post.id}')" style="cursor: pointer;">
                                     <div class="post-info">
                                         <span class="post-title-link">${post.title}</span>
-                                        <span class="post-date">📅 ${post.date}</span>
+                                        <span class="post-date"> ${post.date}</span>
                                     </div>
                                     <span class="post-tag">Читать →</span>
                                 </div>
@@ -92,7 +92,7 @@ function loadRecentPosts() {
                     `;
                 } else {
                     container.innerHTML = `
-                        <h3 style="margin-top: 2rem; margin-bottom: 0.5rem;">📝 Последние статьи</h3>
+                        <h3 style="margin-top: 2rem; margin-bottom: 0.5rem;"> Последние статьи</h3>
                         <p style="color: var(--text-muted);">Статей пока нет</p>
                     `;
                 }
@@ -110,11 +110,11 @@ function loadRecentTools() {
             if (container) {
                 if (activeTools.length) {
                     container.innerHTML = `
-                        <h3 style="margin-top: 1.5rem; margin-bottom: 0.8rem;">🛠️ Активные инструменты</h3>
+                        <h3 style="margin-top: 1.5rem; margin-bottom: 0.8rem;"> Активные инструменты</h3>
                         <div class="tools-grid">
                             ${activeTools.map(tool => `
                                 <a href="${tool.url}" class="tool-card" style="text-decoration: none; cursor: pointer;">
-                                    <span class="icon">🔧</span>
+                                    <span class="icon"></span>
                                     <span class="name">${tool.title.replace(/^[^\s]+\s/, '')}</span>
                                     <span class="status-badge">Готов</span>
                                 </a>
@@ -123,7 +123,7 @@ function loadRecentTools() {
                     `;
                 } else {
                     container.innerHTML = `
-                        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">🛠️ Активные инструменты</h3>
+                        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;"> Активные инструменты</h3>
                         <p style="color: var(--text-muted);">Пока нет активных инструментов</p>
                     `;
                 }
@@ -147,7 +147,7 @@ function loadPage(pageId) {
         menuBtns.forEach(btn => btn.classList.remove('active'));
         document.querySelector(`.menu-btn[data-page="tools"]`)?.classList.add('active');
         const html = `
-            <h2>🛠️ Инструменты</h2>
+            <h2> Инструменты</h2>
             <p>Здесь будут полезные инструменты, которые я создал или использую.</p>
             <div id="tools-list"></div>
         `;
